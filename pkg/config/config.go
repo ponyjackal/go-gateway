@@ -1,13 +1,13 @@
 package config
 
 import (
-	"gin-boilerplate/infra/logger"
+	"github.com/ponyjackal/go-gateway/pkg/logger"
+
 	"github.com/spf13/viper"
 )
 
 type Configuration struct {
-	Server   ServerConfiguration
-	Database DatabaseConfiguration
+	Server ServerConfiguration
 }
 
 // SetupConfig configuration
