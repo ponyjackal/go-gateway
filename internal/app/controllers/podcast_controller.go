@@ -5,7 +5,7 @@ import "github.com/gin-gonic/gin"
 type PodcastController struct {
 }
 
-func (c *PodcastController) NewPodcastController() *PodcastController {
+func NewPodcastController() *PodcastController {
 	return &PodcastController{}
 }
 
