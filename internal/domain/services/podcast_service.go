@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/url"
 
+	"github.com/ponyjackal/go-gateway/pkg/logger"
 	"github.com/ponyjackal/go-gateway/pkg/types"
 	"github.com/spf13/viper"
 )
@@ -64,7 +65,10 @@ func (s *PodcastService) GetPodcasts(query types.GetPodcastsQuery) (*types.GetPo
 	var podcasts []types.Podcast
 	err = json.Unmarshal(body, &podcasts)
 	if err != nil {
-		return nil, fmt.Errorf("error unmarshalling response: %w", err)
+		logger.Errorf("error unmarshalling response: %w", err)
+		return &types.GetPodcastsResponse{
+			Podcasts: []types.Podcast{},
+		}, nil
 	}
 
 	return &types.GetPodcastsResponse{

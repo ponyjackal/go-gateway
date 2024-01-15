@@ -6,7 +6,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/ponyjackal/go-gateway/internal/domain/services"
-	"github.com/ponyjackal/go-gateway/pkg/logger"
 	"github.com/ponyjackal/go-gateway/pkg/types"
 )
 
@@ -58,7 +57,8 @@ func (c *PodcastController) GetPodcasts(ctx *gin.Context) {
 
 	podcasts, err := c.podcastService.GetPodcasts(query)
 	if err != nil {
-		logger.Errorf("Failed to get podcasts: %s", err)
+		ctx.JSON(http.StatusInternalServerError, gin.H{"message": "Something went wrong", "error": err})
+		return
 	}
 
 	ctx.JSON(http.StatusOK, &podcasts)
