@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/ponyjackal/go-gateway/internal/app/middlewares"
 	"github.com/spf13/viper"
+	"golang.org/x/time/rate"
 )
 
 func SetupRoute() *gin.Engine {
@@ -21,6 +22,9 @@ func SetupRoute() *gin.Engine {
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
 	router.Use(middlewares.CORSMiddleware())
+
+	limiter := rate.NewLimiter(1, 5)
+	router.Use(middlewares.RateLimitMiddleware(limiter))
 
 	RegisterRoutes(router) //routes register
 
