@@ -21,7 +21,7 @@ func NewPodcastService(httpService *HTTPService) *PodcastService {
 	}
 }
 
-func (s *PodcastService) GetPodcasts(query types.GetPodcastsQuery) (*types.GetPodcastsResponse, error) {
+func (s *PodcastService) GetPodcasts(query types.GetPodcastsQuery) ([]types.Podcast, error) {
 	var PODCAST_SERVICE_URL = viper.GetString("PODCAST_SERVICE_URL")
 	baseURL, err := url.Parse(fmt.Sprintf("%s/podcasts", PODCAST_SERVICE_URL))
 	if err != nil {
@@ -66,12 +66,8 @@ func (s *PodcastService) GetPodcasts(query types.GetPodcastsQuery) (*types.GetPo
 	err = json.Unmarshal(body, &podcasts)
 	if err != nil {
 		logger.Errorf("error unmarshalling response: %w", err)
-		return &types.GetPodcastsResponse{
-			Podcasts: []types.Podcast{},
-		}, nil
+		return []types.Podcast{}, nil
 	}
 
-	return &types.GetPodcastsResponse{
-		Podcasts: podcasts,
-	}, nil
+	return podcasts, nil
 }
