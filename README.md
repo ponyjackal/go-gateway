@@ -57,7 +57,7 @@ Follow these steps:
 - Copy [.env.example](.env.example) as `.env` and configure necessary values
 - To add all dependencies for a package in your module `go get .` in the current directory
 - Locally run `go run main.go` or `go build main.go` and run `./main`
-- Check Application health available on [0.0.0.0:8000/health](http://0.0.0.0:8000/health)
+- Check Application heartbeat available on [0.0.0.0:8000/heartbeat](http://0.0.0.0:8000/heartbeat)
 
 #### Develop Application in Docker with Live Reload
 
@@ -67,7 +67,7 @@ Follow these steps:
 - Docker Installation for your desire OS https://docs.docker.com/engine/install/ubuntu/
 - Docker Composer Installation https://docs.docker.com/compose/install/
 - Run and Develop `make dev`
-- Check Application heartbeat available on [0.0.0.0:8000/health](http://0.0.0.0:8000/heartbeat)
+- Check Application heartbeat available on [0.0.0.0:8000/heartbeat](http://0.0.0.0:8000/heartbeat)
 
 ### Middlewares
 
